@@ -1,0 +1,18 @@
+{
+  "properties": [
+    {
+      "name": "server.application.name",
+      "type": "java.lang.String",
+      "description": "Description for server.application.name."
+    },
+    {
+      "name": "server.profiles.active",
+      "type": "java.lang.String",
+      "description": "Description for server.profiles.active."
+    },
+    {
+      "name": "server.profiles",
+      "type": "java.lang.String",
+      "description": "Description for server.profiles."
+    }
+  ] }
