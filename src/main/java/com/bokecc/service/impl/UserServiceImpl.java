@@ -1,6 +1,7 @@
 package com.bokecc.service.impl;
 
 
+import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.bokecc.mapper.UserMapper;
 import com.bokecc.model.User;
 import com.bokecc.service.IuserService;
@@ -19,23 +20,28 @@ public class UserServiceImpl implements IuserService {
     private UserMapper mapper;
 
     @Override
-    public List<User> selectList(Set<String> userIds) {
-        return null;
+    public List<User> selectAll() {
+        return mapper.selectList(null);
     }
 
     @Override
-    public int delete(String id) {
+    public User selectById(String id) {
+        return mapper.selectById(id);
+    }
+
+    @Override
+    public int updateOne(User user) {
+        return mapper.updateById(user);
+    }
+
+    @Override
+    public int insertOne(User user) {
+        return mapper.insert(user);
+    }
+
+    @Override
+    public int deleteOne(String id) {
         return mapper.deleteById(id);
     }
 
-    @Override
-    public User selectById(String userId) {
-        return mapper.selectById(userId);
-    }
-
-    @Override
-    public int updateById(String userId) {
-        User user = mapper.selectById(userId);
-        return 0;
-    }
 }

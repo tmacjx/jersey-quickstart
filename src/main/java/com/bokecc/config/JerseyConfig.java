@@ -9,6 +9,7 @@ import io.swagger.jaxrs.config.BeanConfig;
 import com.bokecc.resource.UserResource;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
+import org.glassfish.jersey.server.ServerProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import javax.ws.rs.ApplicationPath;
 import lombok.extern.slf4j.Slf4j;
@@ -28,10 +29,11 @@ public class JerseyConfig extends ResourceConfig{
     }
 
     @PostConstruct
-    private void innit(){
+    private void init(){
         // this.register(UserResource.class);
 
         this.register(GlobalExceptionHandler.class);
+        property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
 
         // 寻找所有JerseyRest注解的Resources
         Map<String, Object> resources = applicationContext.getBeansWithAnnotation(JerseyRest.class);

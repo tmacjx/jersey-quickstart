@@ -1,17 +1,22 @@
 package com.bokecc.service;
+import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.bokecc.model.User;
 import java.util.List;
 import java.util.Set;
 
 public interface IuserService {
 
-    List<User> selectList(Set<String> userIds);
+    List<User> selectAll();
 
-    int delete(String id);
+    int deleteOne(String id);
 
     User selectById(String userId);
 
-    int updateById(String userId);
+    int updateOne(User user);
 
+    int insertOne(User user);
 
 }
+
+
+

@@ -16,7 +16,7 @@ public class User extends Model<User>{
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @TableField("user_id")
+    @TableField("userid")
     private String userId;
 
     @TableField("username")

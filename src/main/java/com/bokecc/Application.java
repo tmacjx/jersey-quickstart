@@ -2,11 +2,13 @@ package com.bokecc;
 
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.client.RestTemplate;
 
 
 @Slf4j
@@ -16,6 +18,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ServletComponentScan(basePackages = {"com.bokecc"})
 public class Application implements CommandLineRunner
 {
+
+    @Autowired
+    public RestTemplate restTemplate;
+
     public static void main(String[] args) {
 
         SpringApplication.run(Application.class, args);

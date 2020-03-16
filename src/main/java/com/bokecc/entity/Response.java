@@ -58,7 +58,7 @@ public class Response<T> {
     public String toString() {
         return "Response{" +
                 "status=" + status +
-                ", msg='" + msg + '\'' +
+                ", errMsg='" + msg + '\'' +
                 ", data=" + data +
                 '}';
     }
