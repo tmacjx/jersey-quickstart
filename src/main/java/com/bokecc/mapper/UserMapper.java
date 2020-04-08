@@ -22,7 +22,7 @@ public interface UserMapper extends BaseMapper<User> {
     Integer updateById(User user);
 
     @Override
-    Integer deleteById(Serializable serializable);
+    Integer deleteById(Serializable id);
 
     @Override
     Integer insert(User user);

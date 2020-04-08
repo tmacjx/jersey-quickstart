@@ -3,7 +3,6 @@ package com.bokecc.resource;
 import com.alibaba.fastjson.JSON;
 import com.bokecc.entity.annotation.JerseyRest;
 import com.bokecc.model.User;
-import com.bokecc.entity.Response;
 import com.bokecc.service.IuserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -75,22 +74,21 @@ public class UserResource {
         return userService.insertOne(user);
     }
 
-//    @PUT
-//    @Path("/{id}")
-//    @ApiOperation(value = "更新user", httpMethod = "PUT")
-//    public Response updateUser(
-//            @ApiParam(required = true, value = "用户id")
-//            @NotBlank
-//            @QueryParam("id") String id
-//            @Valid UserParam userParam){
-//        System.out.println(("----- selectAll ------"));
-//        log.info("调度接口参数--> {}", JSON.toJSONString(userParam));
-//        User user = userService.selectById(id));
-//        user.setUserName(userParam.getUsername());
-//
-//        userService.updateOne(user);
-//        return Response.ok();
-//    }
+    @PUT
+    @Path("/{id}")
+    @ApiOperation(value = "更新user", httpMethod = "PUT")
+    public Integer updateUser(
+            @ApiParam(required = true, value = "用户id")
+            @NotBlank
+            @PathParam("id") String id,
+            @Valid UserParam userParam
+    ) {
+        System.out.println(("----- updateOne ------"));
+        log.info("调度接口参数--> {}", JSON.toJSONString(userParam));
+        User user = userService.selectById(id);
+        user.setUserName(userParam.getUsername());
+        return userService.updateOne(user);
+    }
 
     @DELETE
     @Path("/{id}")
@@ -101,7 +99,7 @@ public class UserResource {
             @PathParam("id") String id){
         System.out.println(("----- deleteOne ------"));
         try {
-            Integer success = userService.deleteOne(id);
+            Integer success = userService.deleteOne(Long.valueOf(id));
             return success;
         }catch (Exception e){
             e.printStackTrace();

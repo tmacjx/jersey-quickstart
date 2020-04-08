@@ -6,6 +6,7 @@ import com.bokecc.mapper.UserMapper;
 import com.bokecc.model.User;
 import com.bokecc.service.IuserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +41,7 @@ public class UserServiceImpl implements IuserService {
     }
 
     @Override
-    public int deleteOne(String id) {
+    public int deleteOne(Long id) {
         return mapper.deleteById(id);
     }
 

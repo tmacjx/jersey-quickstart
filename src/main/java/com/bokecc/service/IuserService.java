@@ -8,7 +8,7 @@ public interface IuserService {
 
     List<User> selectAll();
 
-    int deleteOne(String id);
+    int deleteOne(Long id);
 
     User selectById(String userId);
 
