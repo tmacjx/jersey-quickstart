@@ -1,4 +1,5 @@
 package com.bokecc.model;
+
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
@@ -12,7 +13,7 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("user")
-public class User extends Model<User>{
+public class User extends Model<User> {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 

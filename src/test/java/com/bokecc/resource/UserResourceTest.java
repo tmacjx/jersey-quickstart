@@ -186,6 +186,26 @@ public class UserResourceTest {
 
     @Test
     @Transactional
+    public void updateUser() throws Exception {
+        String url = server_name + "/api/user/" + 1;
+
+        User user = new User();
+        user.setUserName("sss");
+        user.setUserId("1213");
+        // jackjson序列化
+        mapper.setPropertyNamingStrategy(PropertyNamingStrategy.LOWER_CASE);
+        String json = mapper.writeValueAsString(user);
+        JSONObject userJSon = new JSONObject();
+        HttpEntity<String> httpEntity =
+                new HttpEntity<String>(json, headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.PUT, httpEntity, String.class);
+        Assert.assertEquals(response.getStatusCode(), HttpStatus.OK);
+        Assert.assertNotNull(response);
+    }
+
+    @Test
+    @Transactional
     public void deleteUser() throws Exception{
         String url = server_name + "/api/user/" + 1;
         // restTemplate.delete(url);

@@ -18,6 +18,7 @@ management:
     rabbit:
       enabled: false
 
-#mybatis-plus:
-#  mapper-locations: classpath:/mapper/*Mapper.xml
-#  typeAliasesPackage: com.bokecc.model
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  typeAliasesPackage: com.bokecc.model
+

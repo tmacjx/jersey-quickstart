@@ -1,6 +1,8 @@
 package com.bokecc.resource;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.bokecc.entity.annotation.JerseyRest;
 import com.bokecc.model.User;
 import com.bokecc.service.IuserService;
@@ -38,7 +40,7 @@ public class UserResource {
             @PathParam("id") String id){
         System.out.println(("----- selectById ------"));
         try{
-            User user = userService.selectById(id);
+            User user = userService.selectById(Long.valueOf(id));
             return user;
         }catch (Exception e){
             e.printStackTrace();
@@ -46,8 +48,6 @@ public class UserResource {
         return null;
     }
 
-    // todo 如何根据条件查询
-    // todo 如何分页返回
     @GET
     @ApiOperation(value = "查询user列表", httpMethod = "GET")
     public List<User> getUsers(){
@@ -58,7 +58,6 @@ public class UserResource {
         return userList;
     }
 
-    // todo 如何批量创建
     @POST
     @ApiOperation(value = "新增user", httpMethod = "POST")
     public Integer addUser(
@@ -85,9 +84,14 @@ public class UserResource {
     ) {
         System.out.println(("----- updateOne ------"));
         log.info("调度接口参数--> {}", JSON.toJSONString(userParam));
-        User user = userService.selectById(id);
+
+        User user = new User();
         user.setUserName(userParam.getUsername());
-        return userService.updateOne(user);
+
+        //设置查询条件
+        EntityWrapper<User> ew = new EntityWrapper<>();
+        ew.where("id", Long.valueOf(id));
+        return userService.updateOne(user, ew);
     }
 
     @DELETE

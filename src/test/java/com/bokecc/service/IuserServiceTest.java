@@ -25,7 +25,7 @@ public class IuserServiceTest {
     @Test
     public void selectById() {
         long id = 1;
-        User user = userService.selectById(String.valueOf(id));
+        User user = userService.selectById(id);
         Assert.assertEquals((long) user.getId(), id);
     }
 
