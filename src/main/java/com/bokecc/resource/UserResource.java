@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.bokecc.entity.annotation.JerseyRest;
 import com.bokecc.model.User;
 import com.bokecc.service.IUserService;
-import com.bokecc.supports.ApiResponse;
+import com.bokecc.supports.RestResponse;
 import com.bokecc.supports.ServiceResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,33 +34,33 @@ public class UserResource {
     @GET
     @Path("/{id}")
     @ApiOperation(value = "查询user", httpMethod = "GET")
-    public ApiResponse getUser(
+    public RestResponse getUser(
             @ApiParam(required = true, value = "用户id")
             @NotBlank
             @PathParam("id") String id){
         System.out.println(("----- selectById ------"));
         User user = userService.selectByUserId(id);
         if(user != null){
-            return ApiResponse.ofSuccess(user);
+            return RestResponse.ofSuccess(user);
         }
-        return ApiResponse.ofFail();
+        return RestResponse.ofFail();
     }
 
     @GET
     @ApiOperation(value = "查询user列表", httpMethod = "GET")
-    public ApiResponse getUsers(){
+    public RestResponse getUsers(){
         // 返回list
         System.out.println(("----- selectAll ------"));
         List<User> userList = userService.selectAll();
         if(userList != null){
-            return ApiResponse.ofSuccess(userList);
+            return RestResponse.ofSuccess(userList);
         }
-        return ApiResponse.ofFail();
+        return RestResponse.ofFail();
     }
 
     @POST
     @ApiOperation(value = "新增user", httpMethod = "POST")
-    public ApiResponse addUser(
+    public RestResponse addUser(
             @Valid UserParam userParam
             ){
         System.out.println(("----- insertOne ------"));
@@ -72,15 +72,15 @@ public class UserResource {
         user.setUserName(username);
         int res = userService.insertOne(user);
         if(res == 1){
-            return ApiResponse.ofSuccess();
+            return RestResponse.ofSuccess();
         }
-        return ApiResponse.ofFail();
+        return RestResponse.ofFail();
     }
 
     @PUT
     @Path("/{id}")
     @ApiOperation(value = "更新user", httpMethod = "PUT")
-    public ApiResponse updateUser(
+    public RestResponse updateUser(
             @ApiParam(required = true, value = "用户id")
             @NotBlank
             @PathParam("id") String id,
@@ -97,24 +97,24 @@ public class UserResource {
         wrapper.where("id", Long.valueOf(id));
         int res = userService.updateOne(user, wrapper);
         if(res == 1){
-            return ApiResponse.ofSuccess();
+            return RestResponse.ofSuccess();
         }
-        return ApiResponse.ofFail();
+        return RestResponse.ofFail();
     }
 
     @DELETE
     @Path("/{id}")
     @ApiOperation(value = "删除user", httpMethod = "DELETE")
-    public ApiResponse deleteUser(
+    public RestResponse deleteUser(
             @ApiParam(required = true, value = "用户id")
             @NotBlank
             @PathParam("id") String id) {
         System.out.println(("----- deleteOne ------"));
         int res = userService.deleteOne(Long.valueOf(id));
         if( res == 1){
-            return ApiResponse.ofSuccess();
+            return RestResponse.ofSuccess();
         }
-        return ApiResponse.ofFail();
+        return RestResponse.ofFail();
     }
 
 }

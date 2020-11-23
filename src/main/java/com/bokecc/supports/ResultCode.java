@@ -16,15 +16,11 @@ public enum ResultCode implements IResultCode<Integer> {
 	/**
 	 * 操作成功
 	 */
-	OK(200, "操作成功"),
-	FAIL(201, "操作失败"),
-	PARAM_INVALID(1001, "参数错误"),
-	/**
-	 * 未知异常
-	 */
-	UNKNOWN_ERROR(500, "服务器出错啦");
-
-
+	OK(0, "操作成功"),
+	FAIL(-1, "操作失败"),
+	UNKNOWN_ERROR(-100, "服务器出错啦"),
+	AUTH_FAILURE(-101, "认证失败"),
+	PARAM_INVALID(11, "参数错误");
 
 	/**
 	 * 状态码

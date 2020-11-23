@@ -1,6 +1,9 @@
 package com.bokecc.config;
 
 import com.bokecc.entity.annotation.JerseyRest;
+import com.bokecc.filter.JerseyResponseFilter;
+import com.bokecc.filter.ServiceApiFilter;
+import com.bokecc.filter.SwaggerAuthenticationFilter;
 import io.swagger.jaxrs.listing.ApiListingResource;
 import io.swagger.jaxrs.listing.SwaggerSerializers;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -30,6 +33,12 @@ public class JerseyConfig extends ResourceConfig{
     private void init(){
 
         this.register(GlobalExceptionHandler.class);
+        this.register(JerseyResponseFilter.class);
+        this.register(ViolationExceptionHandler.class);
+        this.register(SwaggerAuthenticationFilter.class);
+        this.register(ServiceApiFilter.class);
+
+
         property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
 
         // 寻找所有JerseyRest注解的Resources
@@ -41,7 +50,6 @@ public class JerseyConfig extends ResourceConfig{
         }
 
         resources.forEach((x, y) ->{
-
             this.register(y.getClass());
         });
 

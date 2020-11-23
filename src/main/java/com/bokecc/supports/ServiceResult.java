@@ -3,7 +3,9 @@ package com.bokecc.supports;
 
 import java.util.Objects;
 
-
+/**
+ * Service层结果封装类
+ */
 public class ServiceResult<T, C> {
 
     private static final IResultCode<Integer> SUCCESS = ResultCode.OK;

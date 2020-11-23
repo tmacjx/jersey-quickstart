@@ -11,7 +11,7 @@ import lombok.Data;
  * @description: 通用的 API 接口封装
  */
 @Data
-public class ApiResponse {
+public class RestResponse {
 	/**
 	 * 状态码
 	 */
@@ -30,7 +30,7 @@ public class ApiResponse {
 	/**
 	 * 无参构造函数
 	 */
-	private ApiResponse() {
+	private RestResponse() {
 
 	}
 
@@ -41,7 +41,7 @@ public class ApiResponse {
 	 * @param message 返回内容
 	 * @param data    返回数据
 	 */
-	public ApiResponse(Integer code, String message, Object data) {
+	public RestResponse(Integer code, String message, Object data) {
 		this.code = code;
 		this.message = message;
 		this.data = data;
@@ -55,8 +55,8 @@ public class ApiResponse {
 	 * @param data    返回数据
 	 * @return ApiResponse
 	 */
-	public static ApiResponse of(Integer code, String message, Object data) {
-		return new ApiResponse(code, message, data);
+	public static RestResponse of(Integer code, String message, Object data) {
+		return new RestResponse(code, message, data);
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class ApiResponse {
 	 * @param data 返回数据
 	 * @return ApiResponse
 	 */
-	public static ApiResponse ofSuccess(Object data) {
+	public static RestResponse ofSuccess(Object data) {
 		return ofStatus(ResultCode.OK, data);
 	}
 
@@ -74,7 +74,7 @@ public class ApiResponse {
 	 *
 	 * @return ApiResponse
 	 */
-	public static ApiResponse ofSuccess() {
+	public static RestResponse ofSuccess() {
 		return ofStatus(ResultCode.OK, null);
 	}
 
@@ -84,7 +84,7 @@ public class ApiResponse {
 	 * @param message 返回内容
 	 * @return ApiResponse
 	 */
-	public static ApiResponse ofMessage(String message) {
+	public static RestResponse ofMessage(String message) {
 		return of(ResultCode.OK.getCode(), message, null);
 	}
 
@@ -94,7 +94,7 @@ public class ApiResponse {
 	 *
 	 * @return ApiResponse
 	 */
-	public static ApiResponse ofFail(){
+	public static RestResponse ofFail(){
 		return of(ResultCode.FAIL.getCode(), ResultCode.FAIL.getMessage(), null);
 	}
 
@@ -104,7 +104,7 @@ public class ApiResponse {
 	 * @param result 状态 {@link ResultCode}
 	 * @return ApiResponse
 	 */
-	public static ApiResponse ofStatus(ResultCode result) {
+	public static RestResponse ofStatus(ResultCode result) {
 		return ofStatus(result, null);
 	}
 
@@ -115,7 +115,7 @@ public class ApiResponse {
 	 * @param data   返回数据
 	 * @return ApiResponse
 	 */
-	public static ApiResponse ofStatus(ResultCode result, Object data) {
+	public static RestResponse ofStatus(ResultCode result, Object data) {
 		return of(result.getCode(), result.getMessage(), data);
 	}
 
@@ -127,7 +127,7 @@ public class ApiResponse {
 	 * @param <T>  {@link BaseException} 的子类
 	 * @return ApiResponse
 	 */
-	public static <T extends BaseException> ApiResponse ofException(T t, Object data) {
+	public static <T extends BaseException> RestResponse ofException(T t, Object data) {
 		return of(t.getCode(), t.getMessage(), data);
 	}
 
@@ -138,7 +138,7 @@ public class ApiResponse {
 	 * @param <T> {@link BaseException} 的子类
 	 * @return ApiResponse
 	 */
-	public static <T extends BaseException> ApiResponse ofException(T t) {
+	public static <T extends BaseException> RestResponse ofException(T t) {
 		return ofException(t, null);
 	}
 }
