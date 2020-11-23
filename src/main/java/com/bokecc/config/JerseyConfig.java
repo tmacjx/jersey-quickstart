@@ -4,9 +4,7 @@ import com.bokecc.entity.annotation.JerseyRest;
 import io.swagger.jaxrs.listing.ApiListingResource;
 import io.swagger.jaxrs.listing.SwaggerSerializers;
 import org.glassfish.jersey.server.ResourceConfig;
-import org.springframework.stereotype.Component;
 import io.swagger.jaxrs.config.BeanConfig;
-import com.bokecc.resource.UserResource;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.glassfish.jersey.server.ServerProperties;
@@ -30,7 +28,6 @@ public class JerseyConfig extends ResourceConfig{
 
     @PostConstruct
     private void init(){
-        // this.register(UserResource.class);
 
         this.register(GlobalExceptionHandler.class);
         property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);

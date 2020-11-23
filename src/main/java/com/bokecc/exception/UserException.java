@@ -1,22 +1,15 @@
 package com.bokecc.exception;
 
-public class UserException extends Exception{
-    private int code;
-    private String msg;
+import com.bokecc.supports.ResultCode;
 
-    public int getCode() {
-        return code;
+public class UserException extends BaseException{
+
+    public UserException(ResultCode result){
+        super(result);
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public UserException(Integer code, String message){
+        super(code, message);
     }
 
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
 }

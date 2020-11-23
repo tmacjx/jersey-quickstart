@@ -7,7 +7,7 @@ import lombok.Data;
 public class UserParam {
 
     @ApiModelProperty(required = true, value = "用户id")
-    private String userid;
+    private String userId;
 
     @ApiModelProperty(required = true, value = "用户名")
     private String username;

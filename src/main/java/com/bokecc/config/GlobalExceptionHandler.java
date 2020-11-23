@@ -1,14 +1,17 @@
 package com.bokecc.config;
 
-import com.bokecc.entity.ErrorCode;
+import com.bokecc.supports.ApiResponse;
+import com.bokecc.supports.ResultCode;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
-import com.bokecc.entity.ErrorResponse;
 
+/**
+ *  全局异常处理
+ */
 @Slf4j
 @Provider
 public class GlobalExceptionHandler implements ExceptionMapper<Exception> {
@@ -21,7 +24,7 @@ public class GlobalExceptionHandler implements ExceptionMapper<Exception> {
         String sb = exception.getClass().getSimpleName() +
                 " --> " +
                 exception.getMessage();
-        ErrorResponse res = new ErrorResponse(ErrorCode.UNKNOW_EXCEPTION.getCode(), sb);
+        ApiResponse res = new ApiResponse(ResultCode.UNKNOWN_ERROR.getCode(), sb, null);
         return Response.ok(res, MediaType.APPLICATION_JSON_TYPE).status(500).build();
     }
 }

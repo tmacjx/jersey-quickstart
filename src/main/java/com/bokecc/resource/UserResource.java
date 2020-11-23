@@ -2,15 +2,15 @@ package com.bokecc.resource;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.bokecc.entity.annotation.JerseyRest;
 import com.bokecc.model.User;
-import com.bokecc.service.IuserService;
+import com.bokecc.service.IUserService;
+import com.bokecc.supports.ApiResponse;
+import com.bokecc.supports.ServiceResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
-//import javax.validation.constraints.NotBlank;
 import javax.validation.Valid;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -29,54 +29,58 @@ import java.util.List;
 public class UserResource {
 
     @Autowired
-    private IuserService userService;
+    private IUserService userService;
 
     @GET
     @Path("/{id}")
     @ApiOperation(value = "查询user", httpMethod = "GET")
-    public User getUser(
+    public ApiResponse getUser(
             @ApiParam(required = true, value = "用户id")
             @NotBlank
             @PathParam("id") String id){
         System.out.println(("----- selectById ------"));
-        try{
-            User user = userService.selectById(Long.valueOf(id));
-            return user;
-        }catch (Exception e){
-            e.printStackTrace();
+        User user = userService.selectByUserId(id);
+        if(user != null){
+            return ApiResponse.ofSuccess(user);
         }
-        return null;
+        return ApiResponse.ofFail();
     }
 
     @GET
     @ApiOperation(value = "查询user列表", httpMethod = "GET")
-    public List<User> getUsers(){
+    public ApiResponse getUsers(){
         // 返回list
         System.out.println(("----- selectAll ------"));
         List<User> userList = userService.selectAll();
-        userList.forEach(System.out::println);
-        return userList;
+        if(userList != null){
+            return ApiResponse.ofSuccess(userList);
+        }
+        return ApiResponse.ofFail();
     }
 
     @POST
     @ApiOperation(value = "新增user", httpMethod = "POST")
-    public Integer addUser(
+    public ApiResponse addUser(
             @Valid UserParam userParam
             ){
         System.out.println(("----- insertOne ------"));
         log.info("调度接口参数--> {}", JSON.toJSONString(userParam));
-        String userid = userParam.getUserid();
+        String userId = userParam.getUserId();
         String username = userParam.getUsername();
         User user = new User();
-        user.setUserId(userid);
+        user.setUserId(userId);
         user.setUserName(username);
-        return userService.insertOne(user);
+        int res = userService.insertOne(user);
+        if(res == 1){
+            return ApiResponse.ofSuccess();
+        }
+        return ApiResponse.ofFail();
     }
 
     @PUT
     @Path("/{id}")
     @ApiOperation(value = "更新user", httpMethod = "PUT")
-    public Integer updateUser(
+    public ApiResponse updateUser(
             @ApiParam(required = true, value = "用户id")
             @NotBlank
             @PathParam("id") String id,
@@ -89,26 +93,28 @@ public class UserResource {
         user.setUserName(userParam.getUsername());
 
         //设置查询条件
-        EntityWrapper<User> ew = new EntityWrapper<>();
-        ew.where("id", Long.valueOf(id));
-        return userService.updateOne(user, ew);
+        EntityWrapper<User> wrapper = new EntityWrapper<>();
+        wrapper.where("id", Long.valueOf(id));
+        int res = userService.updateOne(user, wrapper);
+        if(res == 1){
+            return ApiResponse.ofSuccess();
+        }
+        return ApiResponse.ofFail();
     }
 
     @DELETE
     @Path("/{id}")
     @ApiOperation(value = "删除user", httpMethod = "DELETE")
-    public Integer deleteUser(
+    public ApiResponse deleteUser(
             @ApiParam(required = true, value = "用户id")
             @NotBlank
-            @PathParam("id") String id){
+            @PathParam("id") String id) {
         System.out.println(("----- deleteOne ------"));
-        try {
-            Integer success = userService.deleteOne(Long.valueOf(id));
-            return success;
-        }catch (Exception e){
-            e.printStackTrace();
+        int res = userService.deleteOne(Long.valueOf(id));
+        if( res == 1){
+            return ApiResponse.ofSuccess();
         }
-        return null;
+        return ApiResponse.ofFail();
     }
 
 }
