@@ -1,7 +1,7 @@
 package com.bokecc.config;
 
 import com.bokecc.constant.Constant;
-import com.bokecc.supports.ApiResponse;
+import com.bokecc.supports.RestResponse;
 import com.bokecc.supports.ResultCode;
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,7 +22,7 @@ public class ViolationExceptionHandler implements ExceptionMapper<ConstraintViol
     @Override
     public Response toResponse(final ConstraintViolationException exception) {
 
-        ApiResponse re = ApiResponse.ofStatus(ResultCode.PARAM_INVALID, prepareMessage(exception));
+        RestResponse re = RestResponse.ofStatus(ResultCode.PARAM_INVALID, prepareMessage(exception));
 
         return Response.status(Constant.ERROR_HTTP_CODE)
                 .entity(re)

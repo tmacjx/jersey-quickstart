@@ -2,7 +2,7 @@ package com.bokecc.filter;
 
 import com.bokecc.config.SpringContextHolder;
 import com.bokecc.service.ICommonService;
-import com.bokecc.supports.ApiResponse;
+import com.bokecc.supports.RestResponse;
 import com.bokecc.supports.ResultCode;
 import com.bokecc.util.JwtPaire;
 import lombok.extern.slf4j.Slf4j;
@@ -64,38 +64,38 @@ public class ServiceApiFilter implements ContainerRequestFilter {
                             .status(Response.Status.UNAUTHORIZED)
                             .header("content-type", "application/json;charset=utf-8")
                             .encoding(DEFAULT_CHARSET)
-                            .entity(ApiResponse.ofStatus(ResultCode.AUTH_FAILURE))
+                            .entity(RestResponse.ofStatus(ResultCode.AUTH_FAILURE))
                             .build());
-
-            return;
-        }
-
-        JwtPaire jwtPaire = auth(authToken);
-
-        if(jwtPaire.getLeft() != 0){
-
-            log.info("code = {}, msg= {}", jwtPaire.getLeft(), jwtPaire.getRight());
-
-            requestContext.abortWith(
-                    Response
-                            .status(Response.Status.UNAUTHORIZED)
-                            .header("content-type", "application/json;charset=utf-8")
-                            .encoding(DEFAULT_CHARSET)
-                            .entity(ApiResponse.ofStatus(ResultCode.AUTH_FAILURE))
-                            .build());
-
-            return;
 
         }
 
-        log.debug("认证通过");
+        // TODO 请求JWT服务 进行验证
+//        JwtPaire jwtPaire = auth(authToken);
+//
+//        if(jwtPaire.getLeft() != 0){
+//
+//            log.info("code = {}, msg= {}", jwtPaire.getLeft(), jwtPaire.getRight());
+//
+//            requestContext.abortWith(
+//                    Response
+//                            .status(Response.Status.UNAUTHORIZED)
+//                            .header("content-type", "application/json;charset=utf-8")
+//                            .encoding(DEFAULT_CHARSET)
+//                            .entity(RestResponse.ofStatus(ResultCode.AUTH_FAILURE))
+//                            .build());
+//
+//            return;
+//
+//        }
+//
+//        log.debug("认证通过");
 
     }
 
-    private JwtPaire auth(String ccToken){
-
-        ICommonService commonService = SpringContextHolder.getBean(ICommonService.class);
-
-        return commonService.authJwt(ccToken);
-    }
+//    private JwtPaire auth(String ccToken){
+//
+//        ICommonService commonService = SpringContextHolder.getBean(ICommonService.class);
+//
+//        return commonService.authJwt(ccToken);
+//    }
 }

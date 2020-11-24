@@ -1,5 +1,6 @@
 package com.bokecc.filter;
 
+import com.bokecc.constant.Constant;
 import com.bokecc.supports.RestResponse;
 import com.bokecc.supports.ResultCode;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +20,6 @@ import java.util.Set;
 @Slf4j
 public class JerseyResponseFilter implements ContainerResponseFilter {
 
-    public static final int ERROR_HTTP_CODE = 200;
 
 
     private static final String HTTP_METHOD = "OPTIONS";
@@ -61,7 +61,7 @@ public class JerseyResponseFilter implements ContainerResponseFilter {
 
             if (null != response.getCode() && !response.getCode().equals(ResultCode.UNKNOWN_ERROR.getCode())) {
 
-                responseContext.setStatus(ERROR_HTTP_CODE);
+                responseContext.setStatus(Constant.ERROR_HTTP_CODE);
             }
         }
     }

@@ -57,6 +57,7 @@ public class JerseyConfig extends ResourceConfig{
         configureSwagger();
 
     }
+
     private void configureSwagger() {
 
         // Available at localhost:port/swagger.json

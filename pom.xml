@@ -10,8 +10,8 @@
 		<version>1.5.4.RELEASE</version>
 	</parent>
 
-	<groupId>com.bokecc</groupId>
-	<artifactId>jerseydemo</artifactId>
+	<groupId>com.bokecc.com</groupId>
+	<artifactId>jersey-quickstart</artifactId>
 	<version>0.0.1</version>
 
 	<name>jerseydemo</name>
@@ -28,7 +28,8 @@
 		<lombok.version>1.16.20</lombok.version>
 		<jersey2.version>2.25.1</jersey2.version>
 		<jwt-version>0.7.0</jwt-version>
-
+		<jersey2.version>2.27</jersey2.version>
+		<encache-version>2.10.3</encache-version>
 	</properties>
 
 	<dependencies>
@@ -52,6 +53,12 @@
 			<groupId>org.glassfish.jersey.ext</groupId>
 			<artifactId>jersey-bean-validation</artifactId>
 			<version>${jersey2.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+			<version>${encache-version}</version>
 		</dependency>
 
 		<dependency>

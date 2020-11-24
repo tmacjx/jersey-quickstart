@@ -1,6 +1,6 @@
 package com.bokecc.config;
 
-import com.bokecc.supports.ApiResponse;
+import com.bokecc.supports.RestResponse;
 import com.bokecc.supports.ResultCode;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,7 +24,7 @@ public class GlobalExceptionHandler implements ExceptionMapper<Exception> {
         String sb = exception.getClass().getSimpleName() +
                 " --> " +
                 exception.getMessage();
-        ApiResponse res = new ApiResponse(ResultCode.UNKNOWN_ERROR.getCode(), sb, null);
+        RestResponse res = new RestResponse(ResultCode.UNKNOWN_ERROR.getCode(), sb, null);
         return Response.ok(res, MediaType.APPLICATION_JSON_TYPE).status(500).build();
     }
 }

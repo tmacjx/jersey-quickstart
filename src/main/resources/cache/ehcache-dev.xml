@@ -1,0 +1,29 @@
+<!-- @autor: chufuying   @date: 2018-12-06 -->
+
+<ehcache>
+
+    <diskStore path="user.dir/ehcache"/>
+
+    <!-- 设定缓存的默认数据过期策略 -->
+    <defaultCache
+            maxElementsInMemory="1000"
+            eternal="false"
+            overflowToDisk="false"
+            timeToIdleSeconds="0"
+            timeToLiveSeconds="36000"
+            diskPersistent="false"
+            memoryStoreEvictionPolicy="LRU"
+            diskExpiryThreadIntervalSeconds="120"/>
+
+    <!-- 通用cache -->
+<!--    <cache-->
+<!--            name="common-cache"-->
+<!--            maxElementsInMemory="100"-->
+<!--            eternal="false"-->
+<!--            overflowToDisk="false"-->
+<!--            timeToIdleSeconds="0"-->
+<!--            timeToLiveSeconds="600"-->
+<!--            diskPersistent="false"-->
+<!--            memoryStoreEvictionPolicy="LRU"-->
+<!--            diskExpiryThreadIntervalSeconds="120"/>-->
+</ehcache>
