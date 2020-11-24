@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index_style.css">
+    <title>登录</title>
+    <script>
+        function do_something()
+        {
+            alert("hello");
+
+            document.cookie="username=John Smith; path=/";
+
+            var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+            httpRequest.open('GET', 'http://goal-keeper.csslcloud.net:9068/aa_test/api/health', true);//第二步：打开连接  将请求参数写在url中  ps:"./Ptest.php?name=test&nameone=testone"
+            httpRequest.setRequestHeader("X-Forwarded-For", "192.168.1.176");
+            httpRequest.send();//第三步：发送请求  将请求参数写在URL中
+            /**
+             * 获取数据后的处理程序
+             */
+            httpRequest.onreadystatechange = function () {
+                if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                    var json = httpRequest.responseText;//获取到json字符串，还需解析
+                    console.log(json);
+                }
+            };
+        }
+        function do_anything() {
+
+        }
+    </script>
+</head>
+<body>
+<div id="div_login">
+    <div id="div_title"><h1>用户登陆</h1></div>
+    <div id="midden">
+        <p><input class="inputinfo" type="text" name="UserName" placeholder="请输入用户名"></p>
+        <p><input class="inputinfo" type="password" name="PassWord" placeholder="请输入密码"></p>
+        <input type="button" class="submitbutton" value="登陆" onclick="do_anything()">
+
+        <div id="info">
+            <h3>注意事项</h3>
+            <p>1.这里是注意事项这里是注意事项这里是注意事项</p>
+            <p>2.这里是注意事项这里是注意事项这里是注意事项</p>
+            <p>3.这里是注意事项这里是注意事项这里是注意事项</p>
+            <p>4.这里是注意事项这里是注意事项这里是注意事项</p>
+        </div>
+    </div>
+
+</div>
+</body>

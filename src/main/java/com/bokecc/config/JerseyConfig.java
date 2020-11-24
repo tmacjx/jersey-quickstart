@@ -71,5 +71,6 @@ public class JerseyConfig extends ResourceConfig{
         config.setResourcePackage("com.bokecc.resource");
         config.setPrettyPrint(true);
         config.setScan(true);
+
     }
 }
