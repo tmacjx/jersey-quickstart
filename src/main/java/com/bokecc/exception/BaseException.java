@@ -1,6 +1,6 @@
 package com.bokecc.exception;
 
-import com.bokecc.supports.ResultCode;
+import com.bokecc.supports.CommonErrorCode;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -17,7 +17,7 @@ public class BaseException extends RuntimeException {
 	private Integer code;
 	private String message;
 
-	public BaseException(ResultCode result) {
+	public BaseException(CommonErrorCode result) {
 		super(result.getMessage());
 		this.code = result.getCode();
 		this.message = result.getMessage();

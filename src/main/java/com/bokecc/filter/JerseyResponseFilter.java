@@ -2,15 +2,14 @@ package com.bokecc.filter;
 
 import com.bokecc.constant.Constant;
 import com.bokecc.supports.RestResponse;
-import com.bokecc.supports.ResultCode;
+import com.bokecc.supports.CommonErrorCode;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
+
 
 /**
  * 拦截器 -> 用于修改HTTP状态码
@@ -21,32 +20,9 @@ import java.util.Set;
 public class JerseyResponseFilter implements ContainerResponseFilter {
 
 
-
     private static final String HTTP_METHOD = "OPTIONS";
 
-
     private static final String ORIGIN = "Origin";
-
-    // private static final String ALLOW_ORIGIN_KEY = "app-config.allow-origin";
-    // private static Set<String> allowSet = new HashSet<>(10);
-    // static{
-    //
-    //        String active = PropertiesObtainConfig.env.getProperty(ALLOW_ORIGIN_KEY);
-    //
-    //        if(null != active) {
-    //
-    //            String[] arr = active.split(",");
-    //
-    //            if(arr.length > 0){
-    //
-    //                for(String host:arr){
-    //
-    //                    allowSet.add(host.trim());
-    //                }
-    //            }
-    //        }
-    //
-    //  }
 
     @Override
     public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
@@ -59,7 +35,7 @@ public class JerseyResponseFilter implements ContainerResponseFilter {
 
             RestResponse response = (RestResponse) responseContext.getEntity();
 
-            if (null != response.getCode() && !response.getCode().equals(ResultCode.UNKNOWN_ERROR.getCode())) {
+            if (null != response.getCode() && !response.getCode().equals(CommonErrorCode.UNKNOWN_ERROR.getCode())) {
 
                 responseContext.setStatus(Constant.ERROR_HTTP_CODE);
             }

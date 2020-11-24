@@ -1,10 +1,10 @@
 package com.bokecc.exception;
 
-import com.bokecc.supports.ResultCode;
+import com.bokecc.supports.CommonErrorCode;
 
 public class UserException extends BaseException{
 
-    public UserException(ResultCode result){
+    public UserException(CommonErrorCode result){
         super(result);
     }
 

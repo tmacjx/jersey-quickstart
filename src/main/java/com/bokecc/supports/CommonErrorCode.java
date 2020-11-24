@@ -12,7 +12,7 @@ import lombok.ToString;
  */
 @Getter
 @ToString
-public enum ResultCode implements IResultCode<Integer> {
+public enum CommonErrorCode implements IErrorCode{
 	/**
 	 * 操作成功
 	 */
@@ -31,11 +31,9 @@ public enum ResultCode implements IResultCode<Integer> {
 	 */
 	private String message;
 
-	ResultCode(Integer code, String message) {
+	CommonErrorCode(Integer code, String message) {
 		this.code = code;
 		this.message = message;
 	}
-
-
 
 }

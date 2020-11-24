@@ -2,7 +2,6 @@ package com.bokecc.config;
 
 import com.bokecc.entity.annotation.JerseyRest;
 import com.bokecc.filter.JerseyResponseFilter;
-import com.bokecc.filter.ServiceApiFilter;
 import com.bokecc.filter.SwaggerAuthenticationFilter;
 import io.swagger.jaxrs.listing.ApiListingResource;
 import io.swagger.jaxrs.listing.SwaggerSerializers;
@@ -36,7 +35,6 @@ public class JerseyConfig extends ResourceConfig{
         this.register(JerseyResponseFilter.class);
         this.register(ViolationExceptionHandler.class);
         this.register(SwaggerAuthenticationFilter.class);
-        this.register(ServiceApiFilter.class);
 
 
         property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);

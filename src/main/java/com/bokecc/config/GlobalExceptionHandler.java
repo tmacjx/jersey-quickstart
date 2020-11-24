@@ -1,7 +1,7 @@
 package com.bokecc.config;
 
 import com.bokecc.supports.RestResponse;
-import com.bokecc.supports.ResultCode;
+import com.bokecc.supports.CommonErrorCode;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.ws.rs.core.MediaType;
@@ -24,7 +24,7 @@ public class GlobalExceptionHandler implements ExceptionMapper<Exception> {
         String sb = exception.getClass().getSimpleName() +
                 " --> " +
                 exception.getMessage();
-        RestResponse res = new RestResponse(ResultCode.UNKNOWN_ERROR.getCode(), sb, null);
+        RestResponse res = new RestResponse(CommonErrorCode.UNKNOWN_ERROR.getCode(), sb, null);
         return Response.ok(res, MediaType.APPLICATION_JSON_TYPE).status(500).build();
     }
 }

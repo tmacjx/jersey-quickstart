@@ -27,6 +27,8 @@ public class RestResponse {
 	 */
 	private Object data;
 
+	private Long ts = System.currentTimeMillis();
+
 	/**
 	 * 无参构造函数
 	 */
@@ -66,7 +68,7 @@ public class RestResponse {
 	 * @return ApiResponse
 	 */
 	public static RestResponse ofSuccess(Object data) {
-		return ofStatus(ResultCode.OK, data);
+		return ofStatus(CommonErrorCode.OK, data);
 	}
 
 	/**
@@ -75,7 +77,7 @@ public class RestResponse {
 	 * @return ApiResponse
 	 */
 	public static RestResponse ofSuccess() {
-		return ofStatus(ResultCode.OK, null);
+		return ofStatus(CommonErrorCode.OK, null);
 	}
 
 	/**
@@ -85,7 +87,7 @@ public class RestResponse {
 	 * @return ApiResponse
 	 */
 	public static RestResponse ofMessage(String message) {
-		return of(ResultCode.OK.getCode(), message, null);
+		return of(CommonErrorCode.OK.getCode(), message, null);
 	}
 
 
@@ -95,27 +97,27 @@ public class RestResponse {
 	 * @return ApiResponse
 	 */
 	public static RestResponse ofFail(){
-		return of(ResultCode.FAIL.getCode(), ResultCode.FAIL.getMessage(), null);
+		return of(CommonErrorCode.FAIL.getCode(), CommonErrorCode.FAIL.getMessage(), null);
 	}
 
 	/**
 	 * 构造一个有状态的API返回
 	 *
-	 * @param result 状态 {@link ResultCode}
+	 * @param result 状态 {@link IErrorCode}
 	 * @return ApiResponse
 	 */
-	public static RestResponse ofStatus(ResultCode result) {
+	public static RestResponse ofStatus(IErrorCode result) {
 		return ofStatus(result, null);
 	}
 
 	/**
 	 * 构造一个有状态且带数据的API返回
 	 *
-	 * @param result 状态 {@link ResultCode}
+	 * @param result 状态 {@link IErrorCode}
 	 * @param data   返回数据
 	 * @return ApiResponse
 	 */
-	public static RestResponse ofStatus(ResultCode result, Object data) {
+	public static RestResponse ofStatus(IErrorCode result, Object data) {
 		return of(result.getCode(), result.getMessage(), data);
 	}
 

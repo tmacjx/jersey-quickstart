@@ -5,7 +5,7 @@ import com.bokecc.mapper.UserMapper;
 import com.bokecc.model.User;
 import com.bokecc.service.ICacheService;
 import com.bokecc.service.IUserService;
-import com.bokecc.supports.ResultCode;
+import com.bokecc.supports.CommonErrorCode;
 import com.bokecc.supports.ServiceResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
