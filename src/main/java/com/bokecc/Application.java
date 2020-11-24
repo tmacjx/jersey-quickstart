@@ -26,14 +26,6 @@ import org.springframework.web.client.RestTemplate;
 @ServletComponentScan(basePackages = {"com.bokecc"})
 public class Application implements CommandLineRunner
 {
-    @Bean
-    public PaginationInterceptor paginationInterceptor() {
-        return new PaginationInterceptor();
-    }
-
-    @Autowired
-    public RestTemplate restTemplate;
-
     public static void main(String[] args) {
 
         SpringApplication.run(Application.class, args);
@@ -44,7 +36,7 @@ public class Application implements CommandLineRunner
 
         log.info(":::#####################################################################");
 
-        log.info(":::Started successfully!");
+        log.info(":::congratulation to you! the application has started successfully!");
 
         log.info(":::#####################################################################");
     }
