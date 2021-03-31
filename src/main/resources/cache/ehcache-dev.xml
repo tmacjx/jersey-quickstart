@@ -1,5 +1,3 @@
-<!-- @autor: chufuying   @date: 2018-12-06 -->
-
 <ehcache>
 
     <diskStore path="user.dir/ehcache"/>
@@ -16,14 +14,16 @@
             diskExpiryThreadIntervalSeconds="120"/>
 
     <!-- 通用cache -->
-<!--    <cache-->
-<!--            name="common-cache"-->
-<!--            maxElementsInMemory="100"-->
-<!--            eternal="false"-->
-<!--            overflowToDisk="false"-->
-<!--            timeToIdleSeconds="0"-->
-<!--            timeToLiveSeconds="600"-->
-<!--            diskPersistent="false"-->
-<!--            memoryStoreEvictionPolicy="LRU"-->
-<!--            diskExpiryThreadIntervalSeconds="120"/>-->
+    <cache
+            name="user"
+            maxElementsInMemory="100"
+            eternal="false"
+            overflowToDisk="false"
+            timeToIdleSeconds="0"
+            timeToLiveSeconds="600"
+            diskPersistent="false"
+            memoryStoreEvictionPolicy="LRU"
+            diskExpiryThreadIntervalSeconds="120">
+    </cache>
+
 </ehcache>

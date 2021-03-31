@@ -4,12 +4,12 @@
 
     <resultMap id="userMap" type="com.bokecc.model.User">
         <id property="id" column="id"/>
-        <result property="userName" column="user_name"/>
-        <result property="userId" column="user_id"/>
+        <result property="userName" column="username"/>
+        <result property="userId" column="userid"/>
     </resultMap >
 
     <select id="selectByUserId" resultMap="userMap">
-	    select * from user where user_id = #{userid}
+	    select * from user where userid = #{userid}
     </select>
 
 </mapper>
